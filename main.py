@@ -1,5 +1,14 @@
-from mlProject import logger # normally  we should use src.mlProject
-                               # but  we have a ""__init__.py"""  in src folder
+from mlProject import logger
+from mlProject.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 
 
-logger.info(' This is  a trial log !!')
+STAGE_NAME = "Data Ingestion Stage"
+try:
+    logger.info(f">>>>>>>> stage  {STAGE_NAME} started <<<<<<<<")
+    data_ingestion= DataIngestionTrainingPipeline()
+    data_ingestion.main()
+    logger.info(f">>>>>>>> stage {STAGE_NAME} completed <<<<<<< \n\nx============x")
+
+except Exception as e:
+    logger.exception(e)
+    raise e
